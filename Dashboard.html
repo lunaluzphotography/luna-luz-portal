@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Luna Luz Photography – Client Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gold: #C5A776;
+      --taupe: #7D6F5E;
+      --accent-pink: #F53DE4;
+      --warm-neutral: #B7B6A3;
+      --cool-neutral: #A8B8C2;
+      --bg: #f8f7f4;
+      --text-main: #3a3330;
+      --text-soft: #6b625b;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top left, #ffffff 0, #f7f4ef 45%, #f2f0ea 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    /* Top bar */
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff, var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo::before {
+      content: '';
+      width: 65%;
+      height: 65%;
+      border-radius: 18px;
+      border: 2px solid rgba(125, 111, 94, 0.25);
+      border-top-width: 6px;
+      border-right-width: 4px;
+      transform: rotate(-8deg);
+      position: absolute;
+    }
+
+    .brand-logo::after {
+      content: '✶';
+      font-size: 16px;
+      color: #fff;
+      position: relative;
+      top: -3px;
+    }
+
+    .brand-text-main {
+      font-family: 'Playfair Display SC', 'Times New Roman', serif;
+      font-size: 20px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--taupe);
+    }
+
+    .brand-text-sub {
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(197, 167, 118, 0.12);
+      color: var(--taupe);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .btn-outline, .btn-gold {
+      border-radius: 999px;
+      padding: 8px 18px;
+      border: 1px solid rgba(125, 111, 94, 0.25);
+      font-size: 13px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--taupe);
+      background: rgba(125, 111, 94, 0.03);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #d9be8a, var(--gold));
+      color: #fff;
+      border: none;
+      box-shadow: 0 10px 25px rgba(197, 167, 118, 0.4);
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.04);
+      transform: translateY(-1px);
+    }
+
+    /* Hero greeting */
+
+    .hero {
+      background: linear-gradient(120deg, rgba(197, 167, 118, 0.08), rgba(168, 184, 194, 0.12));
+      border-radius: 26px;
+      padding: 26px 26px 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-greeting-label {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .hero-greeting-main {
+      font-family: 'Playfair Display SC', 'Times New Roman', serif;
+      font-size: 26px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 8px;
+    }
+
+    .hero-greeting-sub {
+      font-size: 15px;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .hero-tagline {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-right {
+      border-radius: 22px;
+      background: #ffffff;
+      padding: 18px 16px 16px;
+      border: 1px solid rgba(183, 182, 163, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(245, 61, 228, 0.22), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-right-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-right-title {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .hero-right-main {
+      font-size: 13px;
+      color: var(--taupe);
+      margin-bottom: 10px;
+    }
+
+    .hero-right-highlight {
+      font-size: 12px;
+      color: var(--text-main);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .hero-right-meta {
+      font-size: 11px;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .hero-thought-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    .hero-thought-text {
+      font-size: 12px;
+      color: var(--text-soft);
+      font-style: italic;
+    }
+
+    /* Grid layout */
+
+    .grid {
+      display: grid;
+      grid-template-columns: 2.1fr 1.4fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Panels */
+
+    .panel {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(183, 182, 163, 0.5);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 12px;
+      gap: 6px;
+    }
+
+    .panel-title {
+      font-family: 'Playfair Display SC', 'Times New Roman', serif;
+      font-size: 15px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--taupe);
+    }
+
+    .panel-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    .panel-link {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--taupe);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .panel-link span {
+      font-size: 13px;
+    }
+
+    /* Next session card */
+
+    .session-card {
+      border-radius: var(--radius-md);
+      padding: 14px 14px 12px;
+      background: linear-gradient(135deg, rgba(197, 167, 118, 0.07), rgba(255, 255, 255, 0.9));
+      border: 1px solid rgba(197, 167, 118, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .session-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .session-type {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--taupe);
+    }
+
+    .session-chip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(125, 111, 94, 0.35);
+      color: var(--taupe);
+    }
+
+    .session-detail {
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .session-detail span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .session-detail span::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(197, 167, 118, 0.6);
+    }
+
+    .session-note {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .session-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .session-actions button {
+      border-radius: 999px;
+      border: 1px solid rgba(125, 111, 94, 0.3);
+      background: #ffffff;
+      padding: 5px 12px;
+      cursor: pointer;
+      font-size: 11px;
+      color: var(--taupe);
+    }
+
+    .session-actions button:hover {
+      background: rgba(125, 111, 94, 0.04);
+    }
+
+    /* Timeline */
+
+    .timeline {
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(183, 182, 163, 0.6);
+    }
+
+    .timeline-label {
+      font-size: 11px;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+    }
+
+    .timeline-track {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4px;
+      padding: 14px 2px 0;
+    }
+
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 20px;
+      height: 2px;
+      background: linear-gradient(to right, rgba(197, 167, 118, 0.8), rgba(197, 167, 118, 0.15));
+      z-index: 1;
+    }
+
+    .timeline-step {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      flex: 1;
+    }
+
+    .timeline-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+      border: 1px solid rgba(125, 111, 94, 0.55);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--taupe);
+    }
+
+    .timeline-dot.active {
+      background: radial-gradient(circle at 30% 30%, #ffffff, var(--gold));
+      color: #fff;
+      box-shadow: 0 0 0 3px rgba(197, 167, 118, 0.35);
+      border-color: rgba(197, 167, 118, 0.8);
+    }
+
+    .timeline-dot.completed {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    .timeline-step-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      max-width: 92px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    .timeline-footer {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Other cards */
+
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .card {
+      padding: 12px 12px 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(183, 182, 163, 0.7);
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card.badged::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(168, 184, 194, 0.16), transparent 60%);
+      pointer-events: none;
+    }
+
+    .card-title {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--taupe);
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .badge {
+      align-self: flex-start;
+      margin-top: 4px;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(197, 167, 118, 0.12);
+      color: var(--taupe);
+    }
+
+    /* Right-hand column */
+
+    .tips-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tip-item {
+      padding: 10px 10px 9px;
+      border-radius: var(--radius-md);
+      background: #faf9f6;
+      border: 1px solid rgba(183, 182, 163, 0.7);
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .tip-item span {
+      font-weight: 500;
+      color: var(--taupe);
+    }
+
+    .messages-preview {
+      margin-top: 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(183, 182, 163, 0.8);
+      background: #faf9f6;
+      padding: 10px 10px 8px;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .messages-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .messages-preview-title {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--taupe);
+    }
+
+    .messages-preview-count {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .messages-preview-body {
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .messages-preview-meta {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .blog-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--taupe);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .blog-link::after {
+      content: '↗';
+      font-size: 13px;
+    }
+
+    /* Footer */
+
+    .footer {
+      margin-top: 28px;
+      font-size: 11px;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .footer span {
+      opacity: 0.9;
+    }
+
+  </style>
+
+  <script>
+    // Simple "thought of the day" rotation – demo only
+    document.addEventListener('DOMContentLoaded', function () {
+      const thoughts = [
+        "You’re doing better than you think. Your baby doesn’t need perfection, just you.",
+        "If today felt like a blur of snacks and naps, you’re in very good company.",
+        "You don’t need a tidy house for beautiful photographs – just real moments.",
+        "Tiny hands, tired eyes, big love. That’s more than enough for today.",
+        "If all you did was keep everyone fed and hugged, that’s a win."
+      ];
+      const el = document.getElementById('thought-text');
+      if (el) {
+        const random = thoughts[Math.floor(Math.random() * thoughts.length)];
+        el.textContent = random;
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <div class="page">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-logo"></div>
+        <div>
+          <div class="brand-text-main">Luna Luz</div>
+          <div class="brand-text-sub">Photography</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="pill">Client portal</div>
+        <button class="btn-outline">Sign out</button>
+        <button class="btn-gold">Book a session</button>
+      </div>
+    </header>
+
+    <!-- Hero Greeting -->
+    <section class="hero">
+      <div>
+        <div class="hero-greeting-label">Client home</div>
+        <h1 class="hero-greeting-main">Hello Olivia, lovely to see you again.</h1>
+        <p class="hero-greeting-sub">
+          Everything for your Luna Luz sessions lives here – upcoming bookings, order progress,
+          galleries, and gentle guidance to help your family feel at ease in front of the camera.
+        </p>
+        <div class="hero-tagline">
+          Capturing your story through my lens.
+        </div>
+        <div class="hero-actions">
+          <button class="btn-gold">View next session</button>
+          <button class="btn-outline">View your galleries</button>
+          <button class="btn-outline">Message Luna</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-right-inner">
+          <div class="hero-right-title">Snapshot of today</div>
+          <div class="hero-right-main">
+            Tiny Tales Chapter session confirmed for <strong>Tuesday, 23 April</strong> at <strong>10:00am</strong>.
+          </div>
+          <div class="hero-right-highlight">
+            Your order is currently in <strong>Editing</strong>. I’m carefully polishing each image before you see your preview gallery.
+          </div>
+          <div class="hero-right-meta">
+            You can check your progress timeline and session details at any time from your dashboard below.
+          </div>
+          <div class="hero-thought-label">Thought of the day</div>
+          <div class="hero-thought-text" id="thought-text">
+            You’re doing better than you think. Your baby doesn’t need perfection, just you.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <main class="grid">
+      <!-- Left column: Next session + Timeline + Galleries -->
+      <section class="panel">
+        <header class="panel-header">
+          <div>
+            <h2 class="panel-title">Your next session</h2>
+            <p class="panel-subtitle">Details of your upcoming booking and where we are in your Tiny Tales journey.</p>
+          </div>
+          <a href="#" class="panel-link">
+            View all bookings <span>↗</span>
+          </a>
+        </header>
+
+        <!-- Dummy next session -->
+        <div class="session-card">
+          <div class="session-row">
+            <div>
+              <div class="session-type">Tiny Tales Chapter – Newborn session</div>
+              <div class="session-note">Booking fee of £16.50 paid · Remaining balance due 3 days before.</div>
+            </div>
+            <div class="session-chip">Confirmed</div>
+          </div>
+          <div class="session-detail">
+            <span>Tuesday, 23 April · 10:00am</span>
+            <span>At your home in Elgin</span>
+            <span>Booking ref: LL-2026-0423-OL</span>
+          </div>
+          <div class="session-actions">
+            <button>Add to Google Calendar</button>
+            <button>Download calendar file (.ics)</button>
+          </div>
+        </div>
+
+        <!-- Status timeline -->
+        <div class="timeline">
+          <div class="timeline-label">Order & session progress</div>
+          <div class="timeline-track">
+            <!-- Deposit paid (completed) -->
+            <div class="timeline-step">
+              <div class="timeline-dot completed">✓</div>
+              <div class="timeline-step-label">Deposit paid</div>
+            </div>
+            <!-- Final payment (pending) -->
+            <div class="timeline-step">
+              <div class="timeline-dot active">£</div>
+              <div class="timeline-step-label">Final payment</div>
+            </div>
+            <!-- Photoshoot day -->
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-step-label">Photoshoot day</div>
+            </div>
+            <!-- Editing -->
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-step-label">Editing</div>
+            </div>
+            <!-- Preview gallery -->
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-step-label">Preview gallery</div>
+            </div>
+            <!-- Quality check -->
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-step-label">Quality check</div>
+            </div>
+            <!-- Order shipped -->
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <div class="timeline-step-label">Order shipped</div>
+            </div>
+          </div>
+          <div class="timeline-footer">
+            <span>Currently: <strong>Final payment</strong>. You’ll receive a gentle reminder 5 days before it’s due.</span>
+            <span>Once your session is complete, the bar will move through Editing, Preview, and Shipping.</span>
+          </div>
+        </div>
+
+        <!-- Galleries preview -->
+        <header class="panel-header" style="margin-top: 22px;">
+          <div>
+            <h2 class="panel-title">Your galleries</h2>
+            <p class="panel-subtitle">View, favourite, and share your images in your private online collections.</p>
+          </div>
+          <a href="#" class="panel-link">
+            Open all galleries <span>↗</span>
+          </a>
+        </header>
+
+        <div class="card-list">
+          <div class="card badged">
+            <div class="card-title">Tiny Tales Chapter</div>
+            <div class="card-meta">Newborn session · April 2026 · Preview gallery coming soon.</div>
+            <button class="badge">View gallery (Pixieset)</button>
+          </div>
+          <div class="card">
+            <div class="card-title">Sit, Wiggle &amp; Giggle</div>
+            <div class="card-meta">Sitter session · Auto reminder at 6 months.</div>
+            <div class="badge" style="background: rgba(168,184,194,0.12);">Not booked yet</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Smash &amp; Sparkle</div>
+            <div class="card-meta">First birthday session · Book around baby’s 11th month.</div>
+            <div class="badge" style="background: rgba(245,61,228,0.12);">Plan this chapter</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right column: Tips, Messages, Blog -->
+      <section>
+        <div class="panel">
+          <header class="panel-header">
+            <div>
+              <h2 class="panel-title">Handy tips for your session</h2>
+              <p class="panel-subtitle">The same gentle guidance I send by email, always here when you need it.</p>
+            </div>
+          </header>
+
+          <div class="tips-list">
+            <div class="tip-item">
+              <div>
+                <span>Newborn session guide</span><br />
+                How to keep baby cosy, what to bring, and how we follow their lead.
+              </div>
+              <div>View</div>
+            </div>
+            <div class="tip-item">
+              <div>
+                <span>What to wear</span><br />
+                Soft, neutral tones photograph beautifully. I’ll help you choose outfits that feel like you.
+              </div>
+              <div>View</div>
+            </div>
+            <div class="tip-item">
+              <div>
+                <span>Preparing siblings</span><br />
+                Gentle ideas to help older brothers and sisters feel involved and excited.
+              </div>
+              <div>View</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top: 18px;">
+          <header class="panel-header">
+            <div>
+              <h2 class="panel-title">Messages & updates</h2>
+              <p class="panel-subtitle">Keep everything in one place – no more lost DMs or emails.</p>
+            </div>
+            <a href="#" class="panel-link">
+              Open inbox <span>↗</span>
+            </a>
+          </header>
+
+          <div class="messages-preview">
+            <div class="messages-preview-header">
+              <div class="messages-preview-title">Latest from Luna</div>
+              <div class="messages-preview-count">1 unread</div>
+            </div>
+            <div class="messages-preview-body">
+              “Thank you so much for booking your Tiny Tales session – I can’t wait to meet you all.
+              I’ve popped a few calming tips below to help you get ready…”
+            </div>
+            <div class="messages-preview-meta">
+              Sent yesterday · Tap “Open inbox” to reply or ask any questions.
+            </div>
+          </div>
+
+          <a href="#" class="blog-link">
+            Visit the Luna Luz blog
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>© Luna Luz Photography – Client Portal</span>
+      <span>Made with care in Moray, Scotland.</span>
+    </footer>
+  </div>
+
+</body>
+</html>
